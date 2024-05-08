@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   FaGlobe,
@@ -7,9 +7,11 @@ import {
   FaExternalLinkAlt,
   FaSnapchatGhost,
   FaGithub,
+  FaSun,
+  FaMoon,
 } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
-import { IoIosMail } from "react-icons/io";
+import { IoIosMail, IoIosSunny } from "react-icons/io";
 import { GrDocumentPdf } from "react-icons/gr";
 import AuthorImage from "../assets/Yash-Gohel.jpg";
 
@@ -50,21 +52,18 @@ const links = [
     url: "https://drive.google.com/file/d/1D2cpUku3Y0NrFDQUYskLhJJA5VSLL-qQ/view?usp=sharing",
     icon: GrDocumentPdf,
   },
-
   {
     id: 7,
     title: "Instagram",
     url: "https://www.instagram.com/yashdgaf._",
     icon: FaInstagram,
   },
-
   {
     id: 8,
     title: "Snapchat",
     url: "https://www.snapchat.com/add/yashh_312?share_id=brjf_cQLyM4&locale=en-IN",
     icon: FaSnapchatGhost,
   },
-
   {
     id: 9,
     title: "Threads",
@@ -74,8 +73,27 @@ const links = [
 ];
 
 const LinktreePage = () => {
+  const [isLightTheme, setIsLightTheme] = useState(true);
+
+  useEffect(() => {
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setIsLightTheme(!systemPrefersDark);
+  }, []);
+
+  const toggleTheme = () => {
+    setIsLightTheme((prevTheme) => !prevTheme);
+  };
+
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
+    <div
+      className={
+        isLightTheme
+          ? "bg-gray-100 min-h-screen text-gray-900"
+          : "bg-gray-900 min-h-screen text-white"
+      }
+    >
       <div className="py-8 text-center relative">
         <motion.img
           src={AuthorImage}
@@ -87,7 +105,11 @@ const LinktreePage = () => {
           transition={{ duration: 0.5 }}
         />
         <motion.h1
-          className="text-4xl font-bold mb-2 font-ubuntu"
+          className={
+            isLightTheme
+              ? "text-4xl font-bold mb-2 font-ubuntu text-gray-900"
+              : "text-4xl font-bold mb-2 font-ubuntu"
+          }
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -95,13 +117,23 @@ const LinktreePage = () => {
           My Linktree
         </motion.h1>
         <motion.p
-          className="text-lg mb-5 font-palanquin"
+          className={
+            isLightTheme
+              ? "text-lg mb-5 font-palanquin text-gray-700"
+              : "text-lg mb-5 font-palanquin"
+          }
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           Connect with me on various platforms
         </motion.p>
+        <button
+          className="absolute top-0 right-0 m-4 p-2 rounded-full bg-gray-800 text-white"
+          onClick={toggleTheme}
+        >
+          {isLightTheme ? <FaMoon /> : <IoIosSunny />}
+        </button>
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
@@ -111,7 +143,11 @@ const LinktreePage = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-gray-800 hover:bg-gray-700 rounded-lg p-4 mb-4 transition-all duration-300 shadow-lg flex items-center justify-between mx-4 font-montserrat"
+              className={
+                isLightTheme
+                  ? "block bg-gray-200 hover:bg-gray-300 rounded-lg p-4 mb-4 transition-all duration-300 shadow-lg flex items-center justify-between mx-4 font-montserrat"
+                  : "block bg-gray-800 hover:bg-gray-700 rounded-lg p-4 mb-4 transition-all duration-300 shadow-lg flex items-center justify-between mx-4 font-montserrat"
+              }
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -123,7 +159,15 @@ const LinktreePage = () => {
                 transition={{ duration: 0.3, delay: 0.5 }}
               >
                 <link.icon className="mr-4 text-xl" />
-                <span className="text-lg font-medium">{link.title}</span>
+                <span
+                  className={
+                    isLightTheme
+                      ? "text-lg font-medium text-gray-900"
+                      : "text-lg font-medium text-white"
+                  }
+                >
+                  {link.title}
+                </span>
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, x: 20 }}
@@ -136,7 +180,11 @@ const LinktreePage = () => {
           ))}
         </div>
         <motion.p
-          className="text-sm mt-8 pb-4 text-gray-400 text-center font-palanquin"
+          className={
+            isLightTheme
+              ? "text-sm mt-8 pb-4 text-gray-700 text-center font-palanquin"
+              : "text-sm mt-8 pb-4 text-gray-400 text-center font-palanquin"
+          }
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}

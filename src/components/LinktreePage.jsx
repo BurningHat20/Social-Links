@@ -99,7 +99,7 @@ const LinktreePage = () => {
           >
             Connect with me on various platforms
           </motion.p>
-          <div className="mb-3 ml-1 flex justify-center">
+          <div className="mb-3 font-palanquin ml-1 flex justify-center">
             {["All", "Social Media", "Portfolio", "Contact"].map((category) => (
               <button
                 key={category}

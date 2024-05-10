@@ -6,62 +6,40 @@ import classnames from "classnames";
 import { links } from "../constants";
 import AuthorImage from "../assets/Yash-Gohel.jpg";
 
-const Link = ({ link, isLightTheme }) => {
-  const [visits, setVisits] = useState(0);
-
-  useEffect(() => {
-    const storedVisits = localStorage.getItem(`visitCount-${link.id}`);
-    if (storedVisits) {
-      setVisits(parseInt(storedVisits));
-    }
-  }, []);
-
-  const handleClick = () => {
-    const newVisits = visits + 1;
-    setVisits(newVisits);
-    localStorage.setItem(`visitCount-${link.id}`, newVisits);
-  };
-
-  return (
-    <motion.a
-      href={link.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={classnames(
-        "block rounded-lg p-4 mb-4 transition-all duration-300 shadow-lg flex items-center justify-between mx-4 font-montserrat",
-        {
-          "bg-gray-200 hover:bg-gray-300 text-gray-900": isLightTheme,
-          "bg-gray-800 hover:bg-gray-700 text-white": !isLightTheme,
-        }
-      )}
-      onClick={handleClick}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+const Link = ({ link, isLightTheme }) => (
+  <motion.a
+    href={link.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={classnames(
+      "block rounded-lg p-4 mb-4 transition-all duration-300 shadow-lg flex items-center justify-between mx-4 font-montserrat",
+      {
+        "bg-gray-200 hover:bg-gray-300 text-gray-900": isLightTheme,
+        "bg-gray-800 hover:bg-gray-700 text-white": !isLightTheme,
+      }
+    )}
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <motion.span
+      className="flex items-center"
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, delay: 0.5 }}
     >
-      <motion.span
-        className="flex items-center"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, delay: 0.5 }}
-      >
-        <link.icon className="mr-4 text-xl" />
-        <span className="text-lg font-medium">{link.title}</span>
-      </motion.span>
-      <motion.span
-        className="flex items-center"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, delay: 0.5 }}
-      >
-        <div className="flex gap-1 ">
-          <FaExternalLinkAlt className="text-lg mr-1" />
-          <span className="text-sm font-medium">{visits} visits</span>
-        </div>
-      </motion.span>
-    </motion.a>
-  );
-};
+      <link.icon className="mr-4 text-xl" />
+      <span className="text-lg font-medium">{link.title}</span>
+    </motion.span>
+    <motion.span
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, delay: 0.5 }}
+    >
+      <FaExternalLinkAlt className="text-lg" />
+    </motion.span>
+  </motion.a>
+);
 
 const LinktreePage = () => {
   const [isLightTheme, setIsLightTheme] = useState(true);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaExternalLinkAlt, FaSun, FaMoon } from "react-icons/fa";
+import { FaExternalLinkAlt, FaMoon } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import classnames from "classnames";
 import { links } from "../constants";

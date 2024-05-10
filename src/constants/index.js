@@ -2,14 +2,12 @@ import {
   FaGlobe,
   FaInstagram,
   FaLinkedinIn,
-  FaExternalLinkAlt,
   FaSnapchatGhost,
   FaGithub,
-  FaSun,
-  FaMoon,
+  FaDiscord,
 } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
-import { IoIosMail, IoIosSunny } from "react-icons/io";
+import { IoIosMail } from "react-icons/io";
 import { GrDocumentPdf } from "react-icons/gr";
 
 export const links = [
@@ -74,6 +72,13 @@ export const links = [
     title: "Threads",
     url: "https://www.threads.net/@yashdgaf._",
     icon: FaThreads,
+    category: "Social Media",
+  },
+  {
+    id: 10,
+    title: "Discord",
+    url: "https://www.discordapp.com/users/yash._gohel",
+    icon: FaDiscord,
     category: "Social Media",
   },
 ];

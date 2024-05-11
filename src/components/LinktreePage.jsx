@@ -103,10 +103,13 @@ const LinktreePage = () => {
             {["All", "Social Media", "Portfolio", "Contact"].map((category) => (
               <motion.button
                 key={category}
-                className={classnames("mr-2 px-4 py-2 rounded-md", {
-                  "bg-gray-800 text-white": selectedCategory === category,
-                  "bg-gray-200 text-gray-900": selectedCategory !== category,
-                })}
+                className={classnames(
+                  "mr-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base",
+                  {
+                    "bg-gray-800 text-white": selectedCategory === category,
+                    "bg-gray-200 text-gray-900": selectedCategory !== category,
+                  }
+                )}
                 onClick={() => handleCategoryClick(category)}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
